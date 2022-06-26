@@ -25,13 +25,11 @@ function LoginForm() {
               </Form.Text>
             </Form.Group>
       
-            <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Group className="mb-5" controlId="formBasicPassword">
               <Form.Label className="FormLabel">Password</Form.Label>
               <Form.Control type="password" placeholder="Password" />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Check className="FormCheck" type="checkbox" label="Check me out" />
-            </Form.Group>
+            
             <Button variant="primary" type="submit">
               Submit
             </Button>
