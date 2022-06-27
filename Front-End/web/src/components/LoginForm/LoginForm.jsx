@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import logo from './logo.svg'
 import './LoginForm.scss'
 
@@ -7,6 +7,21 @@ import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 
 function LoginForm() {
+
+  const [body, setBody] = useState({username:'', password:''});
+  
+  const inputChange = ({target}) => {
+    const {name, value} = target
+    setBody({
+      ...body,
+      [name]: value
+    })
+  }
+  
+  const onSubmit = () => {
+    console.log(body)
+  }
+
   return (
     <div>
       <header className="App-header">
@@ -18,20 +33,17 @@ function LoginForm() {
             
           <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label className="FormLabel">Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
-              <Form.Text className="text-muted FormLabelMuted">
-                We'll never share your email with anyone else.
-              </Form.Text>
+              <Form.Label className="FormLabel">Username</Form.Label>
+              <Form.Control type="text" placeholder="Username" value={body.username} onChange={inputChange} name="username" />
             </Form.Group>
       
             <Form.Group className="mb-5" controlId="formBasicPassword">
               <Form.Label className="FormLabel">Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Control type="password" placeholder="Password" value={body.password} onChange={inputChange} name="password" />
             </Form.Group>
             
-            <Button variant="primary" type="submit">
-              Submit
+            <Button variant="primary" onClick={onSubmit} >
+              Login
             </Button>
           </Form>
             
