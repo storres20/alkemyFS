@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const sql = require("./app/models/db.js");
 
 const app = express();
 
@@ -23,9 +24,20 @@ app.get("/", (req, res) => {
 
 app.post("/login", (req, res) => {
   const {username, password} = req.body
-  const values = [username, password]
+  console.log(req.body);
+  //const values = [username, password]
   
-  var connection = mysql.createConnection()
+  sql.query(`SELECT * FROM login WHERE username = '${req.body.username}' AND password = '${req.body.password}'`, (err, result) => {
+    if (err) {
+      res.status(500).send(err)
+    }else{
+      if (result.length > 0) {
+        res.status(200).send(result[0])
+      }else{
+        res.status(400).send('Usuario no existe')
+      }
+    }
+  })
 })
 
 require("./app/routes/product.routes.js")(app);
