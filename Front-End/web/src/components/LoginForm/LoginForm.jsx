@@ -6,9 +6,13 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 
+import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
+
 function LoginForm() {
 
   const [body, setBody] = useState({username:'', password:''});
+  let navigate = useNavigate();
   
   const inputChange = ({target}) => {
     const {name, value} = target
@@ -19,7 +23,15 @@ function LoginForm() {
   }
   
   const onSubmit = () => {
-    console.log(body)
+    /* console.log(body) */
+    axios.post('http://localhost:3001/login', body)
+    .then(({data}) => {
+      //console.log(data);
+      navigate('/home');
+    })
+    .catch(({response})=>{
+      console.log(response.data);
+    })
   }
 
   return (
