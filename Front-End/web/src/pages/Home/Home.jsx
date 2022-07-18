@@ -1,8 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-function Home() {
+function Home({logout}) {
   return (
-    <div>Home</div>
+    <div>
+      <Link to="/about">About</Link>
+      <h1>Home</h1>
+      <button onClick={logout}>Logout</button>
+    </div>
   )
 }
 
