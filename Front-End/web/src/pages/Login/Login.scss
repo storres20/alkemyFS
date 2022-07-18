@@ -56,3 +56,11 @@
 .LoginCard{
   width: 400px;
 }
+
+
+/* Teléfonos */
+@media only screen and (max-width: 575px){
+  .App-header > h1 {
+    text-align: center;
+  }
+}
