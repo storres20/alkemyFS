@@ -34,7 +34,8 @@ function Login({authenticate}) {
       navigate('/home');
     })
     .catch(({response})=>{
-      console.log(response.data);
+      //console.log(response.data);
+      alert(response.data)
     })
   }
 
