@@ -1,10 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import NavBar from '../../components/NavBar/NavBar'
 
-function About() {
+function About({logout}) {
   return (
     <div>
-      <Link to="/home">Home</Link>
+      <NavBar logout = {logout} />
       <h1>About</h1>
     </div>
   )
