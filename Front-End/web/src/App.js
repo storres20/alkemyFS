@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 import Login from "./pages/Login/Login";
 import Home from "./pages/Home/Home"
@@ -34,7 +35,7 @@ function App() {
             {user && (
               <>
                 <Route path="/home" element={<Home logout={() => setUser(false)} />} />
-                <Route path="/about" element={<About />} />
+                <Route path="/about" element={<About logout={() => setUser(false)} />} />
               </>
             )}
             
