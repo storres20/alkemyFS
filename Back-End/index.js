@@ -41,6 +41,7 @@ app.post("/login", (req, res) => {
 })
 
 require("./app/routes/product.routes.js")(app);
+require("./app/routes/category.routes.js")(app);
 
 const server = app.listen(process.env.PORT || 3001, () => {
   const port = server.address().port;
