@@ -41,7 +41,7 @@ Product.findById = (id, result) => {
 
 
 Product.getAll = (title, result) => {
-  let query = "SELECT * FROM login";
+  let query = "SELECT * FROM operacion";
 
   if (title) {
     query += ` WHERE title LIKE '%${title}%'`;
