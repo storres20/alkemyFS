@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import NavBar from '../../components/NavBar/NavBar'
+import {Link} from 'react-router-dom'
 
 import './Home.scss'
 
@@ -22,6 +23,7 @@ function Home({ logout }) {
   const [rutas, setRutas] = useState([]);
   const [allData, setAllData] = useState([]);
   const [categorias, setCategorias] = useState([]);
+  const [balance, setBalance] = useState([]); // Total balance: $100
 
   const inputRef = useRef(null);
   const inputRef2 = useRef(null);
@@ -34,6 +36,19 @@ function Home({ logout }) {
         //console.log(res.data);
         setRutas(res.data)
         setAllData(res.data)
+        
+        let suma=0
+        let datos = res.data
+        
+        //Total balance
+        datos.map(item => {
+          //console.log(item.monto)
+          (item.tipo === 'in') ? (suma=suma + item.monto) : (suma = suma - item.monto)
+          return suma
+        });
+        
+        setBalance(suma)
+        
       })
   }
 
@@ -110,7 +125,7 @@ function Home({ logout }) {
           
           <InputGroup className="mt-3 mb-3">
             <InputGroup.Text id="basic-addon1">Total balance:</InputGroup.Text>
-            <Form.Label className='label'><span>$ 100</span></Form.Label>
+            <Form.Label className='label'><span>$ {balance}</span></Form.Label>
           </InputGroup>
 
 
@@ -151,7 +166,7 @@ function Home({ logout }) {
           </Form>
           
           {/* "New" button */}
-          <Button variant="primary"><i className="bi bi-plus-circle"></i> New</Button>
+          <Link to={"/new"}><Button variant="primary"><i className="bi bi-plus-circle"></i> New</Button></Link>
           
           <Card>
             <Card.Body>
