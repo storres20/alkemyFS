@@ -43,7 +43,7 @@ function Login({authenticate}) {
     <div>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h1>Welcome to your Personal Finance App.</h1>
+        <h1>Welcome to your Personal Financial App.</h1>
         
         <Card className="LoginCard mt-5">
           <Card.Body>
