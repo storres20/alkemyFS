@@ -43,10 +43,18 @@ function Home({ logout }) {
         //Total balance
         datos.map(item => {
           //console.log(item.monto)
-          (item.tipo === 'in') ? (suma=suma + item.monto) : (suma = suma - item.monto)
+          //(item.tipo === 'in') ? (suma = suma + item.monto) : (suma = suma - item.monto)
+          //return suma
+          
+          if (item.tipo === 'in') {
+            suma = suma + (item.monto)
+          }
+          else if (item.tipo === 'out') {
+            suma = suma - (item.monto)
+          }
           return suma
-        });
-        
+          });
+          
         setBalance(suma)
         
       })
