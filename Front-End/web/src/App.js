@@ -5,6 +5,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import Login from "./pages/Login/Login";
 import Home from "./pages/Home/Home"
 import About from './pages/About/About';
+import New from './pages/New/New'
 
 import {Routes, Route, Navigate} from 'react-router-dom'
 
@@ -36,6 +37,7 @@ function App() {
               <>
                 <Route path="/home" element={<Home logout={() => setUser(false)} />} />
                 <Route path="/about" element={<About logout={() => setUser(false)} />} />
+                <Route path="/new" element={<New logout={() => setUser(false)} />} />
               </>
             )}
             
