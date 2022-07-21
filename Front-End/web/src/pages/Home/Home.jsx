@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import NavBar from '../../components/NavBar/NavBar'
+import Pagina from '../../components/Pagina/Pagina'
+
 import {Link} from 'react-router-dom'
 
 import './Home.scss'
@@ -22,8 +24,12 @@ function Home({ logout }) {
 
   const [rutas, setRutas] = useState([]);
   const [allData, setAllData] = useState([]);
-  const [categorias, setCategorias] = useState([]);
+  const [categorias, setCategorias] = useState([]); // list category
   const [balance, setBalance] = useState([]); // Total balance: $100
+  
+  // pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(5);
 
   const inputRef = useRef(null);
   const inputRef2 = useRef(null);
@@ -88,9 +94,11 @@ function Home({ logout }) {
 
       inputRef2.current.value = "--All--";
       setRutas(results);
+      setCurrentPage(1)
 
     } else {
       setRutas(allData);
+      setCurrentPage(1)
       // If the text field is empty, show all users
     }
 
@@ -109,13 +117,26 @@ function Home({ logout }) {
 
       inputRef.current.value = "";
       setRutas(results);
+      setCurrentPage(1)
 
     } else {
       setRutas(allData);
+      setCurrentPage(1)
       // If the text field is empty, show all users
     }
 
   }
+  
+  
+  // Get current posts
+  const indexOfLastPost = currentPage * postsPerPage
+  const indexOfFirstPost = indexOfLastPost - postsPerPage
+  //const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
+  const currentPosts = rutas.slice(indexOfFirstPost, indexOfLastPost)
+  
+  
+  // change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
   return (
     <div>
@@ -178,6 +199,8 @@ function Home({ logout }) {
           
           <Card>
             <Card.Body>
+            
+              <Pagina postsPerPage={postsPerPage} totalPosts={rutas.length} paginate={paginate} currentPage={currentPage} />
 
               <Table striped bordered hover size="md" responsive >
                 <thead>
@@ -192,11 +215,11 @@ function Home({ logout }) {
                   </tr>
                 </thead>
                 <tbody>
-                  {rutas.map((item, index) => (
+                  {currentPosts.map((item, index) => (
                     <tr key={item.id}>
                       <td className='text-center'>{index + 1}</td>
                       <td>{item.concepto}</td>
-                      <td className='text-center'>{item.monto}</td>
+                      <td className='text-center'>$ {item.monto}</td>
                       <td className='text-center'>{item.fecha}</td>
                       <td className='text-center'>{item.tipo}</td>
                       <td className='text-center'>{item.categoria}</td>
@@ -219,6 +242,8 @@ function Home({ logout }) {
 
                 </tbody>
               </Table>
+              
+              <Pagina postsPerPage={postsPerPage} totalPosts={rutas.length} paginate={paginate} currentPage={currentPage} />
 
             </Card.Body>
           </Card>
