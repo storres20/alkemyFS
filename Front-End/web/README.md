@@ -14,3 +14,10 @@ React Js || Login + Node js + MySql
 Link: https://www.youtube.com/watch?v=Fxik1nylKmA
 Canal: Samus
 Nota: Login desde React a Nodejs
+
+
+# Pagination
+Simple Frontend Pagination | React
+Link: https://www.youtube.com/watch?v=IYCa1F-OWmk&list=WL&index=1&t=929s
+Canal: Traversy Media
+Nota: Para paginacion
