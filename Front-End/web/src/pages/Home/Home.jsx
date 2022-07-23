@@ -217,7 +217,7 @@ function Home({ logout }) {
                 <tbody>
                   {currentPosts.map((item, index) => (
                     <tr key={item.id}>
-                      <td className='text-center'>{index + 1}</td>
+                      <td className='text-center'>{item.id}</td>
                       <td>{item.concepto}</td>
                       <td className='text-center'>$ {item.monto}</td>
                       <td className='text-center'>{item.fecha}</td>
