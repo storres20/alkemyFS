@@ -1,11 +1,241 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import NavBar from '../../components/NavBar/NavBar'
 
+import Card from 'react-bootstrap/Card';
+
+import ProductDataService from "../../services/ProductService";
+import {Link, useNavigate} from 'react-router-dom';
+
+import './New.scss'
+import axios from 'axios'
+
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+
 function New({logout}) {
+
+  const initialProductState = {
+    id: null,
+    concepto: "",
+    monto: "",
+    fecha: "",
+    tipo: "",
+    categoria: ""
+  };
+  
+  const [product, setProduct] = useState(initialProductState);
+
+  const handleInputChange = event => {
+    const { name, value } = event.target;
+    setProduct({ ...product, [name]: value });
+  };
+
+  //******************** */
+  const history = useNavigate();
+
+  const saveProduct = () => {
+  
+    if (product.concepto && product.monto && product.fecha && product.tipo && product.categoria) {
+    
+    var data = {
+      concepto: product.concepto,
+      monto: product.monto,
+      fecha: product.fecha,
+      tipo: product.tipo,
+      categoria: product.categoria
+    };
+
+    ProductDataService.create(data)
+      .then(response => {
+        setProduct({
+          id: response.data.id,
+          concepto: response.data.concepto,
+          monto: response.data.monto,
+          fecha: response.data.fecha,
+          tipo: response.data.tipo,
+          categoria: response.data.categoria
+        });
+        console.log(response.data);
+        history("/home");
+      })
+      .catch(e => {
+        console.log(e);
+      });
+      
+    }else {
+      alert("Faltan Datos")
+    }
+  };
+  
+  // Category
+  const [categorias, setCategorias] = useState([]); // list category
+  
+  const obtenerCategorias = () => {
+    // GET request for remote image in node.js
+    axios.get('http://localhost:3001/api/categories')
+    //axios.get('https://rutasq2-back.vercel.app/api/categories')
+      .then(res => {
+        //console.log(res.data);
+        setCategorias(res.data)
+      })
+  }
+
+  useEffect(() => {
+    obtenerCategorias();
+  }, [])
+  
+  // Datepicker
+  const [startDate, setStartDate] = useState(new Date());
+  
+  const handleInputChangeDate = () => {
+    //const { name, value } = event.target;
+    setProduct({ ...product, 'fecha': startDate });
+    
+    console.log(startDate)
+  };
+  
+  /* const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
+    <button className="example-custom-input" onClick={onClick} ref={ref}>
+      {value}
+    </button>
+  )); */
+  
+  /* useEffect(() => {
+    handleInputChangeDate()
+  }, []) */
+
   return (
     <div>
       <NavBar logout={logout} />
-      <h1>New</h1>
+      
+      <Card>
+        <Card.Body className="flex1">
+          <Card.Title><h1>New</h1></Card.Title>
+          <Card.Text>
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </Card.Text>
+          
+          <div className="submit-form">
+            <div className='formFlex'>
+              <h4>New Product</h4>
+              <div className="form-group mb-3">
+                <label htmlFor="concepto">Concept</label>
+                <input
+                  type="text"
+                  className="form-control input"
+                  id="concepto"
+                  required={true}
+                  value={product.concepto}
+                  onChange={handleInputChange}
+                  name="concepto"
+                  autoComplete='off'
+                />
+              </div>
+    
+              <div className="form-group mb-3">
+                <label htmlFor="monto">Amount</label>
+                <input
+                  type="text"
+                  className="form-control input"
+                  id="monto"
+                  required={true}
+                  value={product.monto}
+                  onChange={handleInputChange}
+                  name="monto"
+                  autoComplete='off'
+                />
+              </div>
+              
+              {/* <div className="form-group mb-3">
+                <label htmlFor="fecha">Date</label>
+                <input
+                  type="text"
+                  className="form-control input"
+                  id="fecha"
+                  required={true}
+                  value={product.fecha}
+                  onChange={handleInputChange}
+                  name="fecha"
+                  autoComplete='off'
+                />
+              </div> */}
+              
+              {/* onChange={(date) => setStartDate(date)} */}
+              
+              <div className="form-group mb-3">
+                <label htmlFor="fecha">Date</label>
+                <DatePicker
+                  className="form-control input"
+                  dateFormat="dd/MM/yy"
+                  selected={startDate}
+                  
+                  id="fecha"
+                  required={true}
+                  value={startDate}
+                  onChange={(date) => setStartDate(date)}
+                  onCalendarClose={handleInputChangeDate}
+                  name="fecha"
+                  autoComplete='off'
+                />
+              </div>
+              
+              
+              <div className="form-group mb-3">
+                <label htmlFor="tipo">Type</label>
+                <select className="form-select input" aria-label="Default select example"
+                  id="tipo"
+                  required={true}
+                  value={product.tipo}
+                  onChange={handleInputChange}
+                  name="tipo"
+                >
+                  <option>--Select Type--</option>
+                  <option value="in">in</option>
+                  <option value="out">out</option>
+                </select>
+              </div>
+              
+              
+              <div className="form-group mb-3">
+                <label htmlFor="categoria">Category</label>
+                <select className="form-select input" aria-label="Default select example"
+                  id="categoria"
+                  required={true}
+                  value={product.categoria}
+                  onChange={handleInputChange}
+                  name="categoria"
+                >
+                  <option>--Select Category--</option>
+                  {
+                    categorias.map(item => (
+                      <option key={item.id} value={item.nombre}>{item.nombre}</option>
+                    ))
+                  }
+                </select>
+              </div>
+              
+              <div>
+                <button onClick={saveProduct} className="btn btn-primary mt-3">
+                  Submit
+                </button>
+                <Link
+                  to={"/home"}
+                  className="btn btn-danger mt-3"
+                >
+                  Go Back
+                </Link>
+              </div>
+            </div>
+      
+          </div>
+          
+        </Card.Body>
+      </Card>
+      
+      
+      
     </div>
   )
 }
