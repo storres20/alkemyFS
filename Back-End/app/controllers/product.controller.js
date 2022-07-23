@@ -11,9 +11,11 @@ exports.create = (req, res) => {
 
   // Create a Product
   const product = new Product({
-    user: req.body.user,
-    username: req.body.username,
-    password: req.body.password
+    concepto: req.body.concepto,
+    monto: req.body.monto,
+    fecha: req.body.fecha,
+    tipo: req.body.tipo,
+    categoria: req.body.categoria
   });
 
   // Save Product in the database
