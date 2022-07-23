@@ -2,13 +2,15 @@ const sql = require("./db.js");
 
 // constructor
 const Product = function(product) {
-  this.user = product.user;
-  this.username = product.username;
-  this.password = product.password;
+  this.concepto = product.concepto;
+  this.monto = product.monto;
+  this.fecha = product.fecha;
+  this.tipo = product.tipo;
+  this.categoria = product.categoria;
 };
 
 Product.create = (newProduct, result) => {
-  sql.query("INSERT INTO products SET ?", newProduct, (err, res) => {
+  sql.query("INSERT INTO operacion SET ?", newProduct, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
