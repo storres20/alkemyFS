@@ -220,7 +220,7 @@ function Home({ logout }) {
                       <td className='text-center'>{item.id}</td>
                       <td>{item.concepto}</td>
                       <td className='text-center'>$ {item.monto}</td>
-                      <td className='text-center'>{item.fecha}</td>
+                      <td className='text-center'>{item.fecha2}</td>
                       <td className='text-center'>{item.tipo}</td>
                       <td className='text-center'>{item.categoria}</td>
                       <td className='text-center'>
