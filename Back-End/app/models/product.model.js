@@ -44,7 +44,7 @@ Product.findById = (id, result) => {
 
 
 Product.getAll = (title, result) => {
-  let query = "SELECT * FROM operacion";
+  let query = "SELECT * FROM operacion ORDER BY fecha2";
 
   if (title) {
     query += ` WHERE title LIKE '%${title}%'`;
