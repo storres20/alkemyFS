@@ -5,6 +5,7 @@ const Product = function(product) {
   this.concepto = product.concepto;
   this.monto = product.monto;
   this.fecha = product.fecha;
+  this.fecha2 = product.fecha2;
   this.tipo = product.tipo;
   this.categoria = product.categoria;
 };
