@@ -96,16 +96,17 @@ function New({logout}) {
   
   
   const handleInputChangeDate = () => {
-    //const { name, value } = event.target;
-    //setProduct({ ...product, 'fecha': startDate.valueOf() });
-    
     // startDate to dd/MM/yyyy
     let current = startDate
-    let b = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`
     
-    console.log(b) // dd/MM/yyyy
+    if (current !== null) {
+      let b = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`
+      
+      console.log(b) // dd/MM/yyyy
+      
+      setProduct({ ...product, 'fecha': startDate.valueOf(), 'fecha2': b });
+    }
     
-    setProduct({ ...product, 'fecha': startDate.valueOf(), 'fecha2': b });
   };
   
   const handleOnChangeDate = (date) => {
