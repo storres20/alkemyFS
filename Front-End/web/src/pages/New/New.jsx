@@ -20,6 +20,7 @@ function New({logout}) {
     concepto: "",
     monto: "",
     fecha: "",
+    fecha2: "",
     tipo: "",
     categoria: ""
   };
@@ -36,12 +37,13 @@ function New({logout}) {
 
   const saveProduct = () => {
   
-    if (product.concepto && product.monto && product.fecha && product.tipo && product.categoria) {
+    if (product.concepto && product.monto && product.fecha && product.fecha2 && product.tipo && product.categoria) {
     
     var data = {
       concepto: product.concepto,
       monto: product.monto,
       fecha: product.fecha,
+      fecha2: product.fecha2,
       tipo: product.tipo,
       categoria: product.categoria
     };
@@ -53,6 +55,7 @@ function New({logout}) {
           concepto: response.data.concepto,
           monto: response.data.monto,
           fecha: response.data.fecha,
+          fecha2: response.data.fecha2,
           tipo: response.data.tipo,
           categoria: response.data.categoria
         });
@@ -86,24 +89,31 @@ function New({logout}) {
   }, [])
   
   // Datepicker
-  const [startDate, setStartDate] = useState(new Date());
+  //const a = new Date()
+  //const b = a.valueOf()
+  
+  const [startDate, setStartDate] = useState(null);
+  
   
   const handleInputChangeDate = () => {
     //const { name, value } = event.target;
-    setProduct({ ...product, 'fecha': startDate });
+    //setProduct({ ...product, 'fecha': startDate.valueOf() });
     
-    console.log(startDate)
+    // startDate to dd/MM/yyyy
+    let current = startDate
+    let b = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`
+    
+    console.log(b) // dd/MM/yyyy
+    
+    setProduct({ ...product, 'fecha': startDate.valueOf(), 'fecha2': b });
   };
   
-  /* const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
-    <button className="example-custom-input" onClick={onClick} ref={ref}>
-      {value}
-    </button>
-  )); */
+  const handleOnChangeDate = (date) => {
+    const a = new Date(date)
+    
+    setStartDate(a)
+  }
   
-  /* useEffect(() => {
-    handleInputChangeDate()
-  }, []) */
 
   return (
     <div>
@@ -168,13 +178,14 @@ function New({logout}) {
                 <label htmlFor="fecha">Date</label>
                 <DatePicker
                   className="form-control input"
-                  dateFormat="dd/MM/yy"
+                  dateFormat="dd/MM/yyyy"
                   selected={startDate}
+                  placeholderText="Click to select a date"
                   
                   id="fecha"
                   required={true}
                   value={startDate}
-                  onChange={(date) => setStartDate(date)}
+                  onChange={date => handleOnChangeDate(date)}
                   onCalendarClose={handleInputChangeDate}
                   name="fecha"
                   autoComplete='off'
