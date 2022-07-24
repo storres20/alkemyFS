@@ -14,6 +14,7 @@ exports.create = (req, res) => {
     concepto: req.body.concepto,
     monto: req.body.monto,
     fecha: req.body.fecha,
+    fecha2: req.body.fecha2,
     tipo: req.body.tipo,
     categoria: req.body.categoria
   });
