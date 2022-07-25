@@ -11,6 +11,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import './Edit.scss'
+import axios from 'axios'
 
 
 function Edit({logout}) {
@@ -96,6 +97,24 @@ function Edit({logout}) {
     setStartDate(a)
   }
   
+  
+  // Category
+  const [categorias, setCategorias] = useState([]); // list category
+  
+  const obtenerCategorias = () => {
+    // GET request for remote image in node.js
+    axios.get('http://localhost:3001/api/categories')
+    //axios.get('https://rutasq2-back.vercel.app/api/categories')
+      .then(res => {
+        //console.log(res.data);
+        setCategorias(res.data)
+      })
+  }
+
+  useEffect(() => {
+    obtenerCategorias();
+  }, [])
+  
 
   return (
     <div>
@@ -114,7 +133,7 @@ function Edit({logout}) {
               <div className="edit-form">
                 <h4>Edit Product</h4>
                 <form>
-                  <div className="form-group">
+                  <div className="form-group mb-3">
                     <label htmlFor="concepto">Concept</label>
                     <input
                       type="text"
@@ -126,7 +145,7 @@ function Edit({logout}) {
                     />
                   </div>
                   
-                  <div className="form-group">
+                  <div className="form-group mb-3">
                     <label htmlFor="monto">Amount</label>
                     <input
                       type="text"
@@ -157,30 +176,33 @@ function Edit({logout}) {
                   
                   <div className="form-group mb-3">
                     <label htmlFor="tipo">Type</label>
-                    <select className="form-select input" aria-label="Default select example"
-                      id="tipo"
-                      required={true}
-                      value={currentProduct.tipo}
-                      onChange={handleInputChange}
-                      name="tipo"
-                    >
-                      <option>--Select Type--</option>
-                      <option value="in">in</option>
-                      <option value="out">out</option>
-                    </select>
-                  </div>
-                  
-                  <div className="form-group">
-                    <label htmlFor="categoria">Category</label>
                     <input
                       type="text"
                       className="form-control input"
-                      id="categoria"
-                      name="categoria"
-                      value={currentProduct.categoria}
+                      id="tipo"
+                      name="tipo"
+                      value={currentProduct.tipo}
                       onChange={handleInputChange}
                       disabled
                     />
+                  </div>
+                  
+                  <div className="form-group mb-3">
+                    <label htmlFor="categoria">Category</label>
+                    <select className="form-select input" aria-label="Default select example"
+                      id="categoria"
+                      required={true}
+                      value={currentProduct.categoria}
+                      onChange={handleInputChange}
+                      name="categoria"
+                    >
+                      <option>--Select Category--</option>
+                      {
+                        categorias.map(item => (
+                          <option key={item.id} value={item.nombre}>{item.nombre}</option>
+                        ))
+                      }
+                    </select>
                   </div>
       
                 </form>
