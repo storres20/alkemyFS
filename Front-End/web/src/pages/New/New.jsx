@@ -76,8 +76,8 @@ function New({logout}) {
   
   const obtenerCategorias = () => {
     // GET request for remote image in node.js
-    axios.get('http://localhost:3001/api/categories')
-    //axios.get('https://rutasq2-back.vercel.app/api/categories')
+    //axios.get('http://localhost:3001/api/categories')
+    axios.get('https://rutasq2-back.vercel.app/api/categories')
       .then(res => {
         //console.log(res.data);
         setCategorias(res.data)
