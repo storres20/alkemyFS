@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import NavBar from '../../components/NavBar/NavBar'
 import Pagina from '../../components/Pagina/Pagina'
+import ProductDataService from "../../services/ProductService"
 
 import {Link} from 'react-router-dom'
 
@@ -137,6 +138,23 @@ function Home({ logout }) {
   
   // change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
+  
+  
+  // button delete
+  const deleteProduct2 = (id) => {
+  
+    if (window.confirm("Do you want to DELETE ?") === true) {
+      ProductDataService.remove(id)
+      .then(response => {
+        //console.log(response.data);
+        window.location.reload(true);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+    }
+    
+  };
 
   return (
     <div>
@@ -230,9 +248,10 @@ function Home({ logout }) {
                         >
                           <i className="bi bi-pencil-fill"></i>
                         </Link>
-                        <a className='btn btn-danger m-1' href={item.link}>
+                        <button className="btn btn-danger ml-2"
+                        onClick={() => deleteProduct2(`${item.id}`)}>
                           <i className="bi bi-trash-fill"></i>
-                        </a>
+                        </button>
                       </td>
                     </tr>
                   ))}
