@@ -22,7 +22,7 @@ Además, permite agregar nuevos ingresos o egresos de dinero.
 
 Constará con vista para celulares y para computadoras de escritorio.
 
-Puede ser accedido a traves de: <a href="https://real-front.netlify.app/" target="_blank">XXXXX</a>
+Puede ser accedido a traves de: <a href="https://alkemy20-front.netlify.app/" target="_blank">https://alkemy20-front.netlify.app/</a>
 
 ## Guía de usuario
 ---
@@ -46,6 +46,6 @@ Tecnologias utilizadas
 
 ### 💻Pagina web: 📱
 <ul>
-<li> Frontend: <a href="https://real-front.netlify.app/" target="_blank">XXXXX</a> </li>
-<li> Backend: <a href="https://real-back.vercel.app/api/products" target="_blank">XXXXX</a> </li>
+<li> Frontend: <a href="https://alkemy20-front.netlify.app/" target="_blank">https://alkemy20-front.netlify.app/</a> </li>
+<li> Backend: <a href="https://alkemy20-back.herokuapp.com/" target="_blank">https://alkemy20-back.herokuapp.com/</a> </li>
 </ul>
