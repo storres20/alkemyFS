@@ -27,3 +27,6 @@ Auto deploy React (frontend) Node (backend) subfolders in the same repo on Githu
 Link: https://www.youtube.com/watch?v=rSkxia0ZZQ0
 Canal: Code Like Pro
 Nota: Para deploy frontend y backend en el mismo repositorio
+
+Backend - Heroku
+https://github.com/timanovsky/subdir-heroku-buildpack
