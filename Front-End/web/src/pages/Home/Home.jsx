@@ -224,14 +224,12 @@ function Home({ logout }) {
                       <td className='text-center'>{item.tipo}</td>
                       <td className='text-center'>{item.categoria}</td>
                       <td className='text-center'>
-                        <a
+                        <Link
                           className='btn btn-warning m-1'
-                          target="_blank"
-                          rel="noreferrer"
-                          href={item.link}
+                          to={`/edit/${item.id}`}
                         >
                           <i className="bi bi-pencil-fill"></i>
-                        </a>
+                        </Link>
                         <a className='btn btn-danger m-1' href={item.link}>
                           <i className="bi bi-trash-fill"></i>
                         </a>
