@@ -59,7 +59,7 @@ function New({logout}) {
           tipo: response.data.tipo,
           categoria: response.data.categoria
         });
-        console.log(response.data);
+        //console.log(response.data);
         history("/home");
       })
       .catch(e => {
@@ -102,7 +102,7 @@ function New({logout}) {
     if (current !== null) {
       let b = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`
       
-      console.log(b) // dd/MM/yyyy
+      //console.log(b) // dd/MM/yyyy
       
       setProduct({ ...product, 'fecha': startDate.valueOf(), 'fecha2': b });
     }
