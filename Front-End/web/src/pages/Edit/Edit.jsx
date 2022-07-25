@@ -56,7 +56,7 @@ function Edit({logout}) {
   
   
   const updateProduct = () => {
-    console.log(currentProduct);
+    //console.log(currentProduct);
     ProductDataService.update(currentProduct.id, currentProduct)
       .then(response => {
         //console.log(response.data);
