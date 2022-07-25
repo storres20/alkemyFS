@@ -164,7 +164,7 @@ function Home({ logout }) {
         <Card.Body>
           <Card.Title><h1>Home</h1></Card.Title>
           <Card.Text>
-          This Home page shows all money incomes and outcomes.
+          This Home page shows all your financial incomes and outcomes.
           Even, you can search by name or order by category.
           </Card.Text>
 
@@ -172,7 +172,7 @@ function Home({ logout }) {
           
           <InputGroup className="mt-3 mb-3">
             <InputGroup.Text id="basic-addon1">Total balance:</InputGroup.Text>
-            <Form.Label className='label'><span>$ {balance}</span></Form.Label>
+            <Form.Label className={`label ${(balance<0) ? 'text-danger' : ''}`}><span>$ {balance}</span></Form.Label>
           </InputGroup>
 
 
