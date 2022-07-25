@@ -37,8 +37,8 @@ function Home({ logout }) {
 
   const obtenerDatos = () => {
     // GET request for remote image in node.js
-    axios.get('http://localhost:3001/api/products')
-    //axios.get('https://rutasq2-back.vercel.app/api/products')
+    //axios.get('http://localhost:3001/api/products')
+    axios.get('https://alkemy20-back.herokuapp.com/api/products')
       .then(res => {
         //console.log(res.data);
         setRutas(res.data)
@@ -69,8 +69,8 @@ function Home({ logout }) {
 
   const obtenerCategorias = () => {
     // GET request for remote image in node.js
-    axios.get('http://localhost:3001/api/categories')
-    //axios.get('https://rutasq2-back.vercel.app/api/categories')
+    //axios.get('http://localhost:3001/api/categories')
+    axios.get('https://alkemy20-back.herokuapp.com/api/categories')
       .then(res => {
         //console.log(res.data);
         setCategorias(res.data)
