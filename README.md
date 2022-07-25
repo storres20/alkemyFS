@@ -46,6 +46,6 @@ Tecnologias utilizadas
 
 ### 💻Pagina web: 📱
 <ul>
-<li> Frontend: <a href="https://real-front.netlify.app/" target="_blank">XXXXX</a> </li>
-<li> Backend: <a href="https://real-back.vercel.app/api/products" target="_blank">XXXXX</a> </li>
+<li> Frontend: <a href="https://alkemy20-front.netlify.app/" target="_blank">https://alkemy20-front.netlify.app/</a> </li>
+<li> Backend: <a href="https://alkemy20-back.herokuapp.com/" target="_blank">https://alkemy20-back.herokuapp.com/</a> </li>
 </ul>
