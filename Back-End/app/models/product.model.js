@@ -24,7 +24,7 @@ Product.create = (newProduct, result) => {
 };
 
 Product.findById = (id, result) => {
-  sql.query(`SELECT * FROM products WHERE id = ${id}`, (err, res) => {
+  sql.query(`SELECT * FROM operacion WHERE id = ${id}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -79,7 +79,7 @@ Product.updateById = (id, product, result) => {
   sql.query(
     //"UPDATE products SET title = ?, description = ?, model = ?, quantity = ?, published = ?, warranty = ?, price = ? WHERE id = ?",
     //[product.title, product.description, product.model, product.quantity, product.warranty, product.price, id],
-    `UPDATE products SET title = '${product.title}', description = '${product.description}', model = '${product.model}', quantity = '${product.quantity}', published = ${product.published}, warranty = '${product.warranty}', price = '${product.price}', image = '${product.image}' WHERE id = ${id}`,
+    `UPDATE operacion SET concepto = '${product.concepto}', monto = '${product.monto}', fecha = '${product.fecha}', fecha2 = '${product.fecha2}', tipo = '${product.tipo}', categoria = '${product.categoria}' WHERE id = ${id}`,
     (err, res) => {
       if (err) {
         console.log("error: ", err);
