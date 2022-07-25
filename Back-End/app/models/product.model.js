@@ -100,7 +100,7 @@ Product.updateById = (id, product, result) => {
 };
 
 Product.remove = (id, result) => {
-  sql.query("DELETE FROM products WHERE id = ?", id, (err, res) => {
+  sql.query("DELETE FROM operacion WHERE id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
