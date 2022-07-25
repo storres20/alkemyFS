@@ -124,8 +124,7 @@ function New({logout}) {
         <Card.Body className="flex1">
           <Card.Title><h1>New</h1></Card.Title>
           <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            Feel free to add your financial incomes or outcomes.
           </Card.Text>
           
           <div className="submit-form">
