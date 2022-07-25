@@ -5,7 +5,8 @@ const sql = require("./app/models/db.js");
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:3000" //frontend
+  //origin: "http://localhost:3000" //frontend
+  origin: "https://alkemy20-front.netlify.app" //frontend
 };
 
 
