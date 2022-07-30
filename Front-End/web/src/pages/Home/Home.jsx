@@ -7,6 +7,7 @@ import ProductDataService from "../../services/ProductService"
 import {Link} from 'react-router-dom'
 
 import './Home.scss'
+import './Loading.scss'
 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -27,6 +28,7 @@ function Home({ logout }) {
   const [allData, setAllData] = useState([]);
   const [categorias, setCategorias] = useState([]); // list category
   const [balance, setBalance] = useState([]); // Total balance: $100
+  const [loading, setLoading] = useState(false) // loading
   
   // pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -63,6 +65,7 @@ function Home({ logout }) {
           });
           
         setBalance(suma)
+        setLoading(true) // loading
         
       })
   }
@@ -215,55 +218,67 @@ function Home({ logout }) {
           {/* "New" button */}
           <Link to={"/new"}><Button variant="primary"><i className="bi bi-plus-circle"></i> New</Button></Link>
           
-          <Card>
-            <Card.Body>
-            
-              <Pagina postsPerPage={postsPerPage} totalPosts={rutas.length} paginate={paginate} currentPage={currentPage} />
-
-              <Table striped bordered hover size="md" responsive >
-                <thead>
-                  <tr>
-                    <th className='text-center'>N°</th>
-                    <th>Concept</th>
-                    <th className='text-center'>Amount</th>
-                    <th className='text-center'>Date</th>
-                    <th className='text-center'>Type</th>
-                    <th className='text-center'>Category</th>
-                    <th className='text-center'>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {currentPosts.map((item, index) => (
-                    <tr key={item.id}>
-                      <td className='text-center'>{index+1}</td>
-                      <td>{item.concepto}</td>
-                      <td className='text-center'>$ {item.monto}</td>
-                      <td className='text-center'>{item.fecha2}</td>
-                      <td className='text-center'>{item.tipo}</td>
-                      <td className='text-center'>{item.categoria}</td>
-                      <td className='text-center'>
-                        <Link
-                          className='btn btn-warning m-1'
-                          to={`/edit/${item.id}`}
-                        >
-                          <i className="bi bi-pencil-fill"></i>
-                        </Link>
-                        <button className="btn btn-danger ml-2"
-                        onClick={() => deleteProduct2(`${item.id}`)}>
-                          <i className="bi bi-trash-fill"></i>
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-
-
-                </tbody>
-              </Table>
+          {loading ? (
+          
+            <Card>
+              <Card.Body>
               
-              <Pagina postsPerPage={postsPerPage} totalPosts={rutas.length} paginate={paginate} currentPage={currentPage} />
-
-            </Card.Body>
-          </Card>
+                <Pagina postsPerPage={postsPerPage} totalPosts={rutas.length} paginate={paginate} currentPage={currentPage} />
+    
+                <Table striped bordered hover size="md" responsive >
+                  <thead>
+                    <tr>
+                      <th className='text-center'>N°</th>
+                      <th>Concept</th>
+                      <th className='text-center'>Amount</th>
+                      <th className='text-center'>Date</th>
+                      <th className='text-center'>Type</th>
+                      <th className='text-center'>Category</th>
+                      <th className='text-center'>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {currentPosts.map((item, index) => (
+                      <tr key={item.id}>
+                        <td className='text-center'>{index+1}</td>
+                        <td>{item.concepto}</td>
+                        <td className='text-center'>$ {item.monto}</td>
+                        <td className='text-center'>{item.fecha2}</td>
+                        <td className='text-center'>{item.tipo}</td>
+                        <td className='text-center'>{item.categoria}</td>
+                        <td className='text-center'>
+                          <Link
+                            className='btn btn-warning m-1'
+                            to={`/edit/${item.id}`}
+                          >
+                            <i className="bi bi-pencil-fill"></i>
+                          </Link>
+                          <button className="btn btn-danger ml-2"
+                          onClick={() => deleteProduct2(`${item.id}`)}>
+                            <i className="bi bi-trash-fill"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+    
+    
+                  </tbody>
+                </Table>
+                
+                <Pagina postsPerPage={postsPerPage} totalPosts={rutas.length} paginate={paginate} currentPage={currentPage} />
+    
+              </Card.Body>
+            </Card>
+          
+          ) : (
+          
+            <div className="flexLoad">
+              <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+            </div>
+          
+          )}
+          
+          
 
         </Card.Body>
       </Card>
