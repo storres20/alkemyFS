@@ -11,6 +11,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import './Edit.scss'
+import './Loading.scss'
+
 import axios from 'axios'
 
 
@@ -26,7 +28,7 @@ function Edit({logout}) {
     categoria: ""
   };
   
-  
+  const [loading, setLoading] = useState(false) // loading
   const [currentProduct, setCurrentProduct] = useState(initialProductState);
   const params = useParams() // get the ID from a URL
   //console.log(params.id)
@@ -38,9 +40,11 @@ function Edit({logout}) {
       .then(response => {
         setCurrentProduct(response.data);
         //console.log(response.data);
+        setLoading(true) // loading
       })
       .catch(e => {
         console.log(e);
+        setLoading(true) // loading
       });
   };
   
@@ -127,7 +131,7 @@ function Edit({logout}) {
             Feel free to edit your financial incomes or outcomes.
           </Card.Text>
           
-          {currentProduct ? (
+          {loading ? (
             <div>
               
               <div className="edit-form">
@@ -226,9 +230,8 @@ function Edit({logout}) {
               </div>
             </div>
           ) : (
-            <div>
-              <br />
-              <p>...Loading...</p>
+            <div className="flexLoad">
+              <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
             </div>
           )}
           
