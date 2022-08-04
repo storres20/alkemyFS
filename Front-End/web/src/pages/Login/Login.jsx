@@ -58,12 +58,12 @@ function Login({authenticate}) {
                 <Form>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label className="FormLabel">Username</Form.Label>
-                    <Form.Control type="text" placeholder="Username" value={body.username} onChange={inputChange} name="username" />
+                    <Form.Control type="text" placeholder="Enter: mario" value={body.username} onChange={inputChange} name="username" />
                   </Form.Group>
             
                   <Form.Group className="mb-5" controlId="formBasicPassword">
                     <Form.Label className="FormLabel">Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" value={body.password} onChange={inputChange} name="password" />
+                    <Form.Control type="password" placeholder="Enter: mario123" value={body.password} onChange={inputChange} name="password" />
                   </Form.Group>
                   
                   <Button variant="primary" onClick={onSubmit} >
