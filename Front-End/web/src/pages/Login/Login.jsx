@@ -9,7 +9,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 
-import axios from 'axios'
+//import axios from 'axios'
+import ProductDataService from "../../services/ProductService"
 import {useNavigate} from 'react-router-dom'
 
 
@@ -31,7 +32,8 @@ function Login({authenticate}) {
     setLoading(false) // loading
     /* console.log(body) */
     //axios.post('http://localhost:3001/login', body)
-    axios.post('https://alkemy20-back.herokuapp.com/login', body)
+    //axios.post('https://alkemy20-back.herokuapp.com/login', body)
+    ProductDataService.login(body)
     .then(({data}) => {
       //console.log(data);
       authenticate()
