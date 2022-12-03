@@ -1,7 +1,15 @@
 import http from "../http-common";
 
+const login = data => {
+  return http.post("/login", data);
+};
+
 const getAll = () => {
   return http.get("/products");
+};
+
+const getAllCat = () => {
+  return http.get("/categories");
 };
 
 const get = id => {
@@ -30,7 +38,9 @@ const findByTitle = title => {
 
 // 👇️ assign to variable
 const ProductDataService = {
+  login,
   getAll,
+  getAllCat,
   get,
   create,
   update,
